@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name cnc-controller_Library)(type KiCad)(uri ${KIPRJMOD}/cnc-controller_Library.pretty)(options "")(descr ""))
+)
