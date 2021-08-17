@@ -1577,7 +1577,7 @@ L Device:R R10
 U 1 1 6121F632
 P 2200 3700
 F 0 "R10" V 2300 3600 50  0000 L CNN
-F 1 "10k" V 2300 3750 50  0000 L CNN
+F 1 "15k" V 2300 3750 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 2130 3700 50  0001 C CNN
 F 3 "~" H 2200 3700 50  0001 C CNN
 	1    2200 3700
@@ -1590,7 +1590,7 @@ L Device:R R11
 U 1 1 61250520
 P 2200 4900
 F 0 "R11" V 2300 4700 50  0000 L CNN
-F 1 "10k" V 2300 4900 50  0000 L CNN
+F 1 "15k" V 2300 4900 50  0000 L CNN
 F 2 "Resistor_SMD:R_0603_1608Metric_Pad0.98x0.95mm_HandSolder" V 2130 4900 50  0001 C CNN
 F 3 "~" H 2200 4900 50  0001 C CNN
 	1    2200 4900
@@ -1623,21 +1623,11 @@ Wire Wire Line
 Wire Wire Line
 	2450 3200 2350 3200
 Connection ~ 2450 4400
-Connection ~ 1950 4900
-Wire Wire Line
-	2050 4900 1950 4900
-Wire Wire Line
-	2050 3700 1950 3700
 Wire Wire Line
 	2450 4400 2450 4200
 Connection ~ 2450 4200
 Wire Wire Line
 	2350 4900 2450 4900
-Wire Wire Line
-	1750 4900 1950 4900
-Wire Wire Line
-	1850 3700 1950 3700
-Connection ~ 1950 3700
 Connection ~ 2450 4900
 Wire Wire Line
 	2250 4400 2450 4400
@@ -2402,4 +2392,14 @@ F 3 "https://www.usb.org/sites/default/files/documents/usb_type-c.zip" H 1200 31
 $EndComp
 NoConn ~ 1650 3600
 NoConn ~ 1650 3700
+Wire Wire Line
+	1950 3700 2050 3700
+Wire Wire Line
+	1950 3700 1850 3700
+Connection ~ 1950 3700
+Wire Wire Line
+	2050 4900 1950 4900
+Wire Wire Line
+	1950 4900 1750 4900
+Connection ~ 1950 4900
 $EndSCHEMATC
