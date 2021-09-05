@@ -1,0 +1,7 @@
+.metadata/
+firmware/.metadata/
+firmware/Debug/
+firmware/Release/
+firmware/.settings/
+firmware/.mxproject
+firmware/**/*.launch
