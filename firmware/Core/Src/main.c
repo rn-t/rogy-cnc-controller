@@ -73,16 +73,17 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
   interrupt = 0;
+  //ReportDescriptor用構造体を定義，初期化
   struct keyboardHID_t {
-  uint8_t modifiers;
-  uint8_t reserved;
-  uint8_t key[6];
+	  uint8_t modifiers;
+	  uint8_t reserved;
+	  uint8_t key[6];
   };
   struct keyboardHID_t keyboardHID;
   keyboardHID.modifiers = 0;
   keyboardHID.reserved = 0;
   for(int i = 0 ;i < 6; i++){
-  keyboardHID.key[i] = 0;
+	  keyboardHID.key[i] = 0;
   }
   /* USER CODE END 1 */
 
@@ -116,7 +117,9 @@ int main(void)
   {
       while(interrupt == 0);
       interrupt = 0;
+      //keymatrixの状態を更新
       keymatrixRefresh();
+      //keymatrixの状態に対応したkeycodeとmodifiersをkeyboardHIDに格納していく．6キーでbreak．
       int numOfKey = 0;
       for(int i=0;i<4;i++){
     	  for(int j=0;j<6;j++){
@@ -130,7 +133,7 @@ int main(void)
           if(numOfKey>=6)break;
       }
 
-      //USBdescriptorを送信
+      //ReportDescriptorを送信
       USBD_HID_SendReport(&hUsbDeviceFS, &keyboardHID, sizeof(struct keyboardHID_t));
     /* USER CODE END WHILE */
 
