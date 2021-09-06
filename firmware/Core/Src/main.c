@@ -43,6 +43,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim14;
+
 /* USER CODE BEGIN PV */
 static volatile uint8_t interrupt;
 extern USBD_HandleTypeDef hUsbDeviceFS;
@@ -73,7 +74,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
   interrupt = 0;
-  //ReportDescriptor用構造体を定義，初期化
+  //ReportDescriptor用構�??体を定義?���?�期�?
   struct keyboardHID_t {
 	  uint8_t modifiers;
 	  uint8_t reserved;
@@ -119,7 +120,7 @@ int main(void)
       interrupt = 0;
       //keymatrixの状態を更新
       keymatrixRefresh();
-      //keymatrixの状態に対応したkeycodeとmodifiersをkeyboardHIDに格納していく．6キーでbreak．
+      //keymatrixの状態に対応したkeycodeとmodifiersをkeyboardHIDに格納して�?く�?6キーでbreak?�?
       int numOfKey = 0;
       for(int i=0;i<4;i++){
     	  for(int j=0;j<6;j++){
@@ -133,7 +134,7 @@ int main(void)
           if(numOfKey>=6)break;
       }
 
-      //ReportDescriptorを送信
+      //ReportDescriptorを�?�信
       USBD_HID_SendReport(&hUsbDeviceFS, &keyboardHID, sizeof(struct keyboardHID_t));
     /* USER CODE END WHILE */
 
@@ -256,7 +257,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pins : PA6 PA7 PA8 PA9 */
   GPIO_InitStruct.Pin = GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
