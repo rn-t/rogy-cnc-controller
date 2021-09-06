@@ -43,9 +43,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim14;
-extern USBD_HandleTypeDef hUsbDeviceFS;
 /* USER CODE BEGIN PV */
 static volatile uint8_t interrupt;
+extern USBD_HandleTypeDef hUsbDeviceFS;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
