@@ -74,7 +74,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
   interrupt = 0;
-  //ReportDescriptor用構�??体を定義?���?�期�?
+  //Define,Declaration,initialization struct for ReportDescriptor.
   struct keyboardHID_t {
 	  uint8_t modifiers;
 	  uint8_t reserved;
@@ -118,9 +118,10 @@ int main(void)
   {
       while(interrupt == 0);
       interrupt = 0;
-      //keymatrixの状態を更新
       keymatrixRefresh();
-      //keymatrixの状態に対応したkeycodeとmodifiersをkeyboardHIDに格納して�?く�?6キーでbreak?�?
+
+      //Set keycodes and modifiers of keyboardHID correspond to the state of keymatrix.
+      //The maximum number of keys that can be pressed simultaneously is 6.
       int numOfKey = 0;
       for(int i=0;i<4;i++){
     	  for(int j=0;j<6;j++){
@@ -134,7 +135,6 @@ int main(void)
           if(numOfKey>=6)break;
       }
 
-      //ReportDescriptorを�?�信
       USBD_HID_SendReport(&hUsbDeviceFS, &keyboardHID, sizeof(struct keyboardHID_t));
     /* USER CODE END WHILE */
 
