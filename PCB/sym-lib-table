@@ -1,3 +1,3 @@
 (sym_lib_table
-  (lib (name F042HID_Library)(type Legacy)(uri ${KIPRJMOD}/F042HID_Library.lib)(options "")(descr ""))
+  (lib (name cnc-controller_Library)(type Legacy)(uri ${KIPRJMOD}/cnc-controller_Library.lib)(options "")(descr ""))
 )
