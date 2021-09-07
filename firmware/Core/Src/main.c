@@ -74,18 +74,14 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
   interrupt = 0;
-  //Define,Declaration,initialization struct for ReportDescriptor.
+
+  //Define struct for ReportDescriptor.
   struct keyboardHID_t {
 	  uint8_t modifiers;
 	  uint8_t reserved;
 	  uint8_t key[6];
   };
-  struct keyboardHID_t keyboardHID;
-  keyboardHID.modifiers = 0;
-  keyboardHID.reserved = 0;
-  for(int i = 0 ;i < 6; i++){
-	  keyboardHID.key[i] = 0;
-  }
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -116,18 +112,31 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      while(interrupt == 0);
-      interrupt = 0;
-      keymatrixRefresh();
+      //while(interrupt == 0);
+      //interrupt = 0;
+
+	  //Declaration,initialization struct for ReportDescriptor.
+	  struct keyboardHID_t keyboardHID;
+	  keyboardHID.modifiers = 0;
+	  keyboardHID.reserved = 0;
+	  for(int i = 0 ;i < 6; i++){
+		  keyboardHID.key[i] = 0;
+	  }
 
       //Set keycodes and modifiers of keyboardHID correspond to the state of keymatrix.
       //The maximum number of keys that can be pressed simultaneously is 6.
       int numOfKey = 0;
-      for(int i=0;i<4;i++){
-    	  for(int j=0;j<6;j++){
-    		  if(keymatrixStatus[i][j]==true){
-				  keyboardHID.key[numOfKey] = keycodes[i][j];
-				  keyboardHID.modifiers |= modifiers[i][j];
+      for(int row=0;row<6;row++){
+          const uint16_t inpin[4] = {GPIO_PIN_6,GPIO_PIN_7,GPIO_PIN_8,GPIO_PIN_9};
+          const uint16_t outpin[6] = {GPIO_PIN_5,GPIO_PIN_4,GPIO_PIN_3,GPIO_PIN_2,GPIO_PIN_1,GPIO_PIN_0};
+    	  for(int i=0;i<6;i++){
+    		  if(i==row)HAL_GPIO_WritePin(GPIOA,outpin[i],GPIO_PIN_SET);
+    	  	  else HAL_GPIO_WritePin(GPIOA,outpin[i],GPIO_PIN_RESET);
+    	  }
+    	  for(int line=0;line<4;line++){
+    		  if(HAL_GPIO_ReadPin(GPIOA,inpin[line]) == GPIO_PIN_SET){
+				  keyboardHID.key[numOfKey] = keycodes[line][row];
+				  keyboardHID.modifiers |= modifiers[line][row];
 				  numOfKey++;
 				  if(numOfKey>=6)break;
               }

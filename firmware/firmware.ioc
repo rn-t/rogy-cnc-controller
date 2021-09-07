@@ -55,6 +55,7 @@ PA7.GPIO_PuPd=GPIO_PULLDOWN
 RCC.AHBFreq_Value=48000000
 Mcu.Pin0=PA0
 Mcu.Pin1=PA1
+GPIO.groupedBy=Group By Peripherals
 Mcu.Pin2=PA2
 Mcu.Pin3=PA3
 Mcu.Pin4=PA4
