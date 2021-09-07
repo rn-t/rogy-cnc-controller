@@ -23,7 +23,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "keymatrix.h"
 #include "keymap.h"
 /* USER CODE END Includes */
 
