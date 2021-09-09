@@ -4,6 +4,7 @@ PA6.GPIOParameters=GPIO_PuPd
 ProjectManager.MainLocation=Core/Src
 RCC.I2SFreq_Value=48000000
 RCC.MCOFreq_Value=48000000
+NVIC.TIM14_IRQn=true\:0\:0\:false\:false\:true\:true\:true
 USB_DEVICE.CLASS_NAME_FS=HID
 RCC.USART1Freq_Value=48000000
 ProjectManager.ProjectFileName=firmware.ioc

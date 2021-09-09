@@ -111,8 +111,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-      //while(interrupt == 0);
-      //interrupt = 0;
+      while(interrupt == 0);
+      interrupt = 0;
 
 	  //Declaration,initialization struct for ReportDescriptor.
 	  struct keyboardHID_t keyboardHID;
