@@ -74,7 +74,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
   interrupt = 0;
 
-  //Define struct for ReportDescriptor.
+  //Define struct for USB Report.
   struct keyboardHID_t {
 	  uint8_t modifiers;
 	  uint8_t reserved;
@@ -114,7 +114,7 @@ int main(void)
       while(interrupt == 0);
       interrupt = 0;
 
-	  //Declaration,initialization struct for ReportDescriptor.
+	  //Declaration,initialization struct for USB Report.
 	  struct keyboardHID_t keyboardHID;
 	  keyboardHID.modifiers = 0;
 	  keyboardHID.reserved = 0;
