@@ -23,8 +23,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "keymap.h"
 #include "sk6812mini-e.h"
+#include "serttings.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -112,32 +112,6 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim14);
-  uint8_t  rgb[] = {
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-      0x44, 0x88, 0x88,
-  };
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -146,9 +120,9 @@ int main(void)
   {
       while(interrupt == 0);
       interrupt = 0;
-
+      updateLED();
       sk6812miniE_init (&htim1, TIM_CHANNEL_3);
-      sk6812miniE_start (rgb, sizeof (rgb), true);
+      sk6812miniE_start (LED, sizeof (LED), true);
 
 	  //Declaration,initialization struct for USB Report.
 	  struct keyboardHID_t keyboardHID;
