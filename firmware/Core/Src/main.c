@@ -68,6 +68,17 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 		interrupt = 1;
 	}
 }
+
+void updateLED(){
+	uint8_t LED[72];
+	const uint8_t LEDorder[24] = {13,6,0,18,12,19,1,7,20,14,8,2,21,15,9,3,22,16,10,4,23,17,11,5};
+	for(int i = 0; i < 24; i++){
+		for(int j = 0; j < 3; j++){
+			LED[i*3 + j] = LEDsettings[LEDorder[i]][j];
+		}
+	}
+    sk6812miniE_start (LED, sizeof (LED), true);
+}
 /* USER CODE END 0 */
 
 /**
@@ -112,6 +123,7 @@ int main(void)
   MX_TIM1_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(&htim14);
+  sk6812miniE_init (&htim1, TIM_CHANNEL_3);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,9 +133,6 @@ int main(void)
       while(interrupt == 0);
       interrupt = 0;
       updateLED();
-      sk6812miniE_init (&htim1, TIM_CHANNEL_3);
-      sk6812miniE_start (LED, sizeof (LED), true);
-
 	  //Declaration,initialization struct for USB Report.
 	  struct keyboardHID_t keyboardHID;
 	  keyboardHID.modifiers = 0;
